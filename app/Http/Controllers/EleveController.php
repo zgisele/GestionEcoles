@@ -12,7 +12,8 @@ class EleveController extends Controller
      */
     public function index()
     {
-        //
+        $eleves = Eleve::orderBy('id','desc')->get();
+        return view('eleves.liste', compact('eleves'));
     }
 
     /**
@@ -76,7 +77,7 @@ class EleveController extends Controller
 
 
         $eleve->Update();
-        return redirect('liste');
+        return redirect('/eleves');
     }
     /**
      * Remove the specified resource from storage.

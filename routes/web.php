@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('eleves.ajouter');
 });
+Route::get('/eleves', [EleveController::class,'index']);
 Route::get('modifiereleve/{id}', [EleveController::class,'UpdateEleve']);
 Route::post('/modifiereleve/traitement', [EleveController::class,'UpdateEleveTraitement']);
 

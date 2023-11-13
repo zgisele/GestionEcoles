@@ -12,26 +12,26 @@
                         <input type="text" name="id", style="display: none" value="{{$eleve->id}}">
                         <div class="form-group">
                             <label for="nomArticle">Nom</label>
-                            <input type="text" class="form-control" id="nomArticle"  value="{{$eleve->nom}}" name="titre">
+                            <input type="text" class="form-control" id="nomArticle"  value="{{$eleve->nom}}" name="nom">
                         </div>
                         <div class="form-group">
                             <label for="nomContenu">Prenom</label>
-                            <input type="text" class="form-control" id="nomContenu"  value="{{$eleve->prenom}}" name="contenu">
+                            <input type="text" class="form-control" id="nomContenu"  value="{{$eleve->prenom}}" name="prenom">
                         </div>
                         
                         <div class="form-group">
                             <label for="nomContenu">Date de Naissance</label>
-                            <input type="text" class="form-control" id="nomContenu"  value="{{$eleve->dateNaissance}}" name="contenu">
+                            <input type="text" class="form-control" id="nomContenu"  value="{{$eleve->dateNaissance}}" name="dateNaissance">
                         </div>
 
                         <div class="form-group">
                             <label for="nomContenu">Classe</label>
-                            <input type="text" class="form-control" id="nomContenu"  value="{{$eleve->classe}}" name="contenu">
+                            <input type="text" class="form-control" id="nomContenu"  value="{{$eleve->classe}}" name="classe">
                         </div>
 
                         <div class="form-group">
                             <label for="nomContenu">Sexe</label>
-                            <input type="text" class="form-control" id="nomContenu"  value="{{$eleve->sexe}}" name="contenu">
+                            <input type="text" class="form-control" id="nomContenu"  value="{{$eleve->sexe}}" name="sexe">
                         </div>
                         
                         <button type="submit" class="btn btn-primary offset-4 mt-2">Modifier</button>
