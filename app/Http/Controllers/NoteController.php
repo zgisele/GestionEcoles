@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Laravel\Prompts\Note;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Redis;
 
 class NoteController extends Controller
 {
@@ -57,8 +60,8 @@ class NoteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        
     }
 }

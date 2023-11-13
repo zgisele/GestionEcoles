@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Eleve;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class EleveController extends Controller
 {
@@ -58,8 +60,14 @@ class EleveController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Eleve $eleve)
+    public function destroy($id)
     {
-        //
+        $eleve = Eleve::find($id);
+        $eleve->delete();
+        if ($eleve->save()) 
+        {
+            return Redirect::to('eleves.lists');
+        }
+        
     }
 }
