@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EleveController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
-    return view('eleves.ajouter');
-});
+// Route::get('/', function () {
+//     return view('eleves.liste');
+// });
+Route::get('/eleves', [EleveController::class,'index']);
+Route::get('/eleves/{id}', [EleveController::class,'destroy']);

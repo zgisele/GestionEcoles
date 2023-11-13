@@ -63,11 +63,12 @@ class EleveController extends Controller
      */
     public function destroy($id)
     {
-        $eleve = Eleve::find($id);
-        $eleve->delete();
-        if ($eleve->save()) 
+        $eleves = Eleve::find($id);
+        $eleves->destroy($id);
+        // dd($eleves);
+        if ($eleves->save()) 
         {
-            return Redirect::to('eleves.lists');
+            return Redirect::to('eleves');
         }
         
     }
