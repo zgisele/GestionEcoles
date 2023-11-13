@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EleveController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('eleves.ajouter');
 });
+Route::get('modifiereleve/{id}', [EleveController::class,'UpdateEleve']);
+Route::post('/modifiereleve/traitement', [EleveController::class,'UpdateEleveTraitement']);
+

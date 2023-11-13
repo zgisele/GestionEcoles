@@ -50,11 +50,34 @@ class EleveController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Eleve $eleve)
+    public function UpdateEleve($id)
     {
-        //
+        $eleve = Eleve::find($id);
+        return view('eleves.modifier', compact('eleve'));
     }
 
+
+    public function UpdateEleveTraitement(Request $request)
+    {
+        $articlereq = $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'dateNaissance' => 'required',
+            'classe' => 'required',
+            'sexe' => 'required'
+
+        ]);
+        $eleve = Eleve::find($request->id);
+        $eleve->nom = $request->nom;
+        $eleve->prenom = $request->prenom;
+        $eleve->dateNaissance = $request->dateNaissance;
+        $eleve->classe = $request->classe;
+        $eleve->sexe = $request->sexe;
+
+
+        $eleve->Update();
+        return redirect('liste');
+    }
     /**
      * Remove the specified resource from storage.
      */
