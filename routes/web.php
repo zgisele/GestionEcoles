@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EleveController;
+use App\Models\Eleve;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +22,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('eleves.ajouter');
 });
+
+Route::get('/eleves',  [EleveController::class,'index']);
