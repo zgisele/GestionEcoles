@@ -4,21 +4,21 @@
 <div class="card shadow mb-4 p-5">
     <form class="user">
         <div class="form-group row">
-            <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="col-sm-2 mb-3 mb-sm-0">
                 <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
             </div>
-            <div class="col-sm-6">
-                <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
+            <div class="col-sm-5 ">
+                <select class="form-select form-control form-control-user text-primary" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    @foreach ($matieres as $matiere)
+                    <option value="{{$matiere->id}}">{{$matiere->id}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-sm-5 ">
+                <input type="submit" class="btn btn-google btn-user btn-block " value="Ajouter">
             </div>
         </div>
-
-        <hr>
-        <a href="index.html" class="btn btn-google btn-user btn-block">
-            <i class="fab fa-google fa-fw"></i> Register with Google
-        </a>
-        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-            <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-        </a>
     </form>
 </div>
 <div class="card shadow mb-4">

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Eleve;
+use App\Models\Matiere;
 use Illuminate\Http\Request;
 
 class NoteController extends Controller
@@ -35,7 +37,11 @@ class NoteController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $matieres = Matiere::all();
+        $eleve = Eleve::find($id);
+        $matiereEleve = $eleve->matieres()->get();
+
+        return view("eleves.note", ["matieres" => $matieres, "matiereEleve" => $matiereEleve]);
     }
 
     /**
