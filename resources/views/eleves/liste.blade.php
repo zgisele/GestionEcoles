@@ -9,34 +9,41 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Date Naissance</th>
+                        <th>Classe</th>
+                        <th>Sexe</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                    </tr>
-                </tfoot>
                 <tbody>
-                    
+                  @foreach($eleves as $eleve)  
                     <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
+                        <td>{{$eleve->nom}}</td>
+                        <td>{{$eleve->prenom}}</td>
+                        <td>{{$eleve->dateNaissance}}</td>
+                        <td>{{$eleve->classe}}</td>
+                        <td>{{$eleve->sexe}}</td>
+                        <td>
+                            <div class="mt-4 mb-2">
+                                    </div>
+                                    <a href="#" class="btn btn-info btn-circle btn-lg">
+                                        <i class="fas fa-info-circle"></i>
+                                    </a>
+                                    <a href="/modifierEleve/{{$eleve->id}}" class="btn btn-warning btn-circle btn-lg">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-danger btn-circle btn-lg">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </td>
+
                     </tr>
+                @endforeach
 
                 </tbody>
             </table>
