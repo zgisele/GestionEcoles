@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EleveController;
+use App\Http\Controllers\MatiereController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,17 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
-    return view('eleves.ajouter');
-});
+// Route::get('/matiere', function () {
+//     return view('.ajouter');
+// });
+
+Route::get('/eleves', [EleveController::class,'index']);
+Route::get('/eleves/ajouter',[EleveController::class,'create']);
+Route::post('/eleves/ajouterEleve',[EleveController::class,'store']);
+
+
+
+
+Route::get('/matiere/{id}/modifier', [MatiereController::class, 'edit'])->name('matiere.modifier');
+Route::put('/matiere/{id}', [MatiereController::class, 'update'])->name('matiere.update');
+
