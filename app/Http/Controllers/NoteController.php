@@ -78,9 +78,15 @@ class NoteController extends Controller
     public function destroy($idNote, $idEleve)
     {
 
-        $eleve = Eleve::find($idEleve);
-        $eleve->matieres()->detach($idNote);
+        // $eleve = Eleve::find($idEleve);
+        // dd($eleve->matieres()->detach($idtablePivot));
 
+
+        $eleve = Eleve::find($idEleve);
+
+        $matiere = $eleve->matieres()->detach($idNote);
+
+        $matiere->save();
         return back()->with('status', 'note supprimee avec succes');
     }
 }

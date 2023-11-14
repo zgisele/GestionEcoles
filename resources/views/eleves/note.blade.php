@@ -47,7 +47,7 @@
                             <button type="submit" class="btn btn-warning m-1">
                                 <i class="fas fa-warning"></i> Modifier
                             </button>
-                            <form action="{{'/note/supprimer/'.$matiereEleve->id .'/'. $eleve->id}}" method="post">
+                            <form action="{{'/note/supprimer/'.$matiereEleve->pivot->note.'/'. $eleve->id}}" method="post">
                                 @method('delete')
                                 @csrf
                                 <button type="submit" class="btn btn-danger">
