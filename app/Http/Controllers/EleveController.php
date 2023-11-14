@@ -25,6 +25,7 @@ class EleveController extends Controller
     public function create()
     {
         //
+         return view('eleves.ajouter');
     }
 
     /**
@@ -33,32 +34,73 @@ class EleveController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate(['nom'=>'required|string|max:20'
+    ],['prenom'=>'required|string|max:20'
+    ],['dateNaissance'=>'required'],
+    ['classe'=>'required'],
+    ['sexe'=>'required']
+);
+        $eleves = new Eleve();
+        $eleves->nom=$request->get('nom');
+        $eleves->prenom=$request->get('prenom');
+        $eleves->dateNaissance=$request->get('dateNaissance');
+        $eleves->classe=$request->get('classe');
+        $eleves->sexe=$request->get('sexe');
+        $eleves->save();
+            // return 'bonjour';
+            return back();
+    
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Eleve $eleve)
+    public function show($id)
     {
         //
+    
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Eleve $eleve)
+    public function edit(string $id)
     {
         //
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Eleve $eleve)
+    public function UpdateEleve($id)
     {
-        //
+        $eleve = Eleve::find($id);
+        return view('eleves.modifier', compact('eleve'));
     }
 
+
+    public function UpdateEleveTraitement(Request $request)
+    {
+        $eleve = $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'dateNaissance' => 'required',
+            'classe' => 'required',
+            'sexe' => 'required'
+
+        ]);
+        $eleve = Eleve::find($request->id);
+        $eleve->nom = $request->nom;
+        $eleve->prenom = $request->prenom;
+        $eleve->dateNaissance = $request->dateNaissance;
+        $eleve->classe = $request->classe;
+        $eleve->sexe = $request->sexe;
+
+
+        $eleve->Update();
+        return redirect('/eleves');
+    }
     /**
      * Remove the specified resource from storage.
      */

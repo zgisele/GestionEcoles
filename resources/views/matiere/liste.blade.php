@@ -29,6 +29,8 @@
                 </tfoot>
                 <tbody>
                     
+
+                    @foreach($matiere as $m)
                     <tr>
                         <td>Tiger Nixon</td>
                         <td>System Architect</td>
@@ -36,6 +38,20 @@
                         <td>61</td>
                         <td>2011/04/25</td>
                         <td>$320,800</td>
+                        <td>{{$m->nomMatiere}}</td>
+                        <td>{{$m->coefficient}}</td>
+                        <td class=" d-flex justify-content-center items-center ">
+                            <a href="/matiere/{{$m->id}}/modifier" class="btn btn-warning m-1 px-3 pr-3">
+                                <i class="fas fa-exclamation-triangle"></i> Modifier
+                            </a>
+                            <form action="/matieres/{{$m->id}}" method="post">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" class="btn btn-danger m-1 px-3 pr-3">
+                                    <i class="fas fa-trash"></i> Supprimer
+                                </button>
+                            </form>
+                        </td>
                     </tr>
 
                 </tbody>

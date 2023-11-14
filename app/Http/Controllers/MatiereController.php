@@ -31,14 +31,14 @@ class MatiereController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "nomMatiere"=> "required|String|min:5,max:40",
-            "coefficient"=> "required|integer|"
-            ]);
+            "nomMatiere" => "required|String|min:5,max:40",
+            "coefficient" => "required|integer|"
+        ]);
         $matiere = new Matiere();
         $matiere->nomMatiere = $request->nomMatiere;
         $matiere->coefficient = $request->coefficient;
-        if($matiere->save()){
-            echo"Ajout reussi";
+        if ($matiere->save()) {
+            echo "Ajout reussi";
             return Redirect::to('/matieres');
         }
     }
@@ -46,37 +46,43 @@ class MatiereController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Matiere $matiere)
+    public function show()
     {
         //
+
+        $matiere = Matiere::all();
+        return view('matiere.liste', ['matiere' => $matiere]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Matiere $matiere)
+    public function edit($id)
     {
-        //
+        $matiere = Matiere::findOrFail($id);
+        return view('matiere.modifier', compact('matiere'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Matiere $matiere)
+    public function update(Request $request, $id)
     {
-        //
+        // Mettez à jour la matière
+        $matiere = Matiere::findOrFail($id);
+        $matiere->update($request->all());
+        return Redirect::to('/matieres');
     }
 
     /**
      * Remove the specified resource from storage.
      */
+
     public function destroy($id)
     {
         $matiere = Matiere::find($id);
-        $matiere->destroy('id');
-        if($matiere->save())
-        {
-            return Redirect::to('matieres.liste');
-        }
+        $matiere->delete();
+
+        return Redirect::to('/matieres');
     }
 }

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pivot_eleves_matieres', function (Blueprint $table) {
+        Schema::create('eleve_matiere', function (Blueprint $table) {
             $table->id();
             $table->float('note');
             $table->unsignedBigInteger('eleve_id');
@@ -21,7 +21,7 @@ return new class extends Migration
             // $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      */

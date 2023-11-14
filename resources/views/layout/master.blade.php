@@ -65,7 +65,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion des eleves:</h6>
                         <a class="collapse-item" href="/eleves">Liste eleves</a>
-                        <a class="collapse-item" href="cards.html">Ajouter Eleve</a>
+                        <a class="collapse-item" href="/eleves/ajouter">Ajouter Eleve</a>
                     </div>
                 </div>
             </li>
@@ -79,7 +79,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion des Matiere:</h6>
                         <a class="collapse-item" href="/matieres">Liste Matieres</a>
-                        <a class="collapse-item" href="matieres/ajout">Ajouter Matiere</a>
+                        <a class="collapse-item" href="/matieres/ajout">Ajouter Matiere</a>
                     </div>
                 </div>
             </li>
@@ -294,7 +294,15 @@
 
                 <!-- on ajoute notre contenue pour chaque -->
                 <div class="container-fluid">
+                    @if (Session::has('status'))
+                    <div class="alert alert-dismissible alert-success m-4">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        <strong>Well done!</strong> {{ Session::get('status')}}.
+                    </div>
+                    @endif
+
                     @yield('contenue')
+
                 </div>
                 <!-- /.container-fluid -->
 

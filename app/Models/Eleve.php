@@ -9,18 +9,15 @@ class Eleve extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $fillable =[
+    protected $fillable = [
         'nom',
         'prenom',
         'date',
         'classe',
         'sexe',
     ];
-    public function Matieres()
+    public function matieres()
     {
-        return $this->belongsToMany(Matiere::class);
-
+        return $this->belongsToMany(Matiere::class)->withPivot('note');
     }
-
 }
-
