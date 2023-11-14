@@ -1,6 +1,5 @@
 @extends('layout.master')
 @section('contenue')
-
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
@@ -19,29 +18,44 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($eleves as $eleve)
+                    @foreach($eleves as $eleve)
                     <tr>
                         <td>{{$eleve->nom}}</td>
                         <td>{{$eleve->prenom}}</td>
                         <td>{{$eleve->dateNaissance}}</td>
                         <td>{{$eleve->classe}}</td>
                         <td>{{$eleve->sexe}}</td>
-                        <td>
-                            <a href="{{'/eleves/notes/'.$eleve->id}}" class="btn btn-info btn-circle btn-lg">
-                                <i class="fas fa-info-circle"></i>
+                        <td class="d-flex justify-content-center align-items-center">
+                            <div class="mt-4 mb-2">
+                            </div>
+                            <a href="{{'/eleves/notes/'.$eleve->id}}" class="btn btn-info px-4 pr-4">
+                                <i class="fas fa-info-circle"></i> Notes
                             </a>
-                            <a href="/modifierEleve/{{$eleve->id}}" class="btn btn-warning btn-circle btn-lg">
-                                <i class="fas fa-exclamation-triangle"></i>
+                            <a href="/modifiereleve/{{$eleve->id}}" class="btn btn-warning m-1 px-4 pr-4">
+                                <i class="fas fa-exclamation-triangle"></i> Modifier
                             </a>
-                            <a href="#" class="btn btn-danger btn-circle btn-lg">
-                                <i class="fas fa-trash"></i>
-                            </a>
+                            <form action="/eleves/{{$eleve->id}}" method="post">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i> Supprimer
+                                </button>
+                            </form>
                         </td>
                     </tr>
-                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+</td>
+
+</tr>
+@endforeach
+
+
+</div>
+</div>
+
 @endsection
