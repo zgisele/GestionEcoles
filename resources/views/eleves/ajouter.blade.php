@@ -44,5 +44,6 @@
                             </select>
                     </div>
                     <input type="submit" name="Register" value="Register " class="form-control form-control-user" id="Register">
+                    </form>
                         @endsection
                         

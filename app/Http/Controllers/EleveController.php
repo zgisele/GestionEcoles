@@ -82,7 +82,7 @@ class EleveController extends Controller
 
     public function UpdateEleveTraitement(Request $request)
     {
-        $articlereq = $request->validate([
+        $eleve = $request->validate([
             'nom' => 'required',
             'prenom' => 'required',
             'dateNaissance' => 'required',
@@ -106,10 +106,10 @@ class EleveController extends Controller
      */
     public function destroy($id)
     {
-        $eleves = Eleve::find($id);
-        $eleves->destroy($id);
+        $eleve = Eleve::find($id);
+        $eleve->destroy($id);
         // dd($eleves);
-        if ($eleves->save()) 
+        if ($eleve->save()) 
         {
             return Redirect::to('eleves');
         }

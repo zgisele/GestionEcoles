@@ -65,7 +65,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion des eleves:</h6>
                         <a class="collapse-item" href="/eleves">Liste eleves</a>
-                        <a class="collapse-item" href="cards.html">Ajouter Eleve</a>
+                        <a class="collapse-item" href="/eleves/ajouter">Ajouter Eleve</a>
                     </div>
                 </div>
             </li>
@@ -79,7 +79,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion des Matiere:</h6>
                         <a class="collapse-item" href="/matieres">Liste Matieres</a>
-                        <a class="collapse-item" href="matieres/ajout">Ajouter Matiere</a>
+                        <a class="collapse-item" href="/matieres/ajout">Ajouter Matiere</a>
                     </div>
                 </div>
             </li>

@@ -15,18 +15,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                   
+
                     @foreach($matiere as $m)
                     <tr>
                         <td>{{$m->nomMatiere}}</td>
                         <td>{{$m->coefficient}}</td>
                         <td class=" d-flex justify-content-center items-center ">
-                            <button type="submit" value="/modifiereleve/{{$m->id}}" class="btn btn-warning m-1 px-3 pr-3">
+                            <a href="/matiere/{{$m->id}}/modifier" class="btn btn-warning m-1 px-3 pr-3">
                                 <i class="fas fa-exclamation-triangle"></i> Modifier
-                            </button>
-                            <button type="submit" class="btn btn-danger m-1 px-3 pr-3">
-                                <i class="fas fa-trash"></i> Supprimer
-                            </button>
+                            </a>
+                            <form action="/matieres/{{$m->id}}" method="post">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" class="btn btn-danger m-1 px-3 pr-3">
+                                    <i class="fas fa-trash"></i> Supprimer
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
