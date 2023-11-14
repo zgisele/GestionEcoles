@@ -25,50 +25,40 @@ class NoteController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+   // app/Http/Controllers/NoteController.php
+
+
+    
+
+    public function edit($eleve_id, $matiere_id)
     {
-        //
+        // Récupérer l'élève et la matière
+        $eleve = Eleve::findOrFail($eleve_id);
+        $matiere = Matiere::findOrFail($matiere_id);
+
+        // Récupérer la note de l'élève pour la matière spécifiée
+        $note = $eleve->matieres()->where('matiere_id', $matiere_id)->first();
+
+        // Charger la vue pour la modification avec les données de la note
+        return view('notes.modifier', compact('eleve', 'matiere', 'note'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update($eleve_id, $matiere_id)
     {
-        //
+        // Valider les données du formulaire
+        request()->validate([
+            'note' => 'required|numeric',
+        ]);
+
+        // Mettre à jour la note
+        $eleve = Eleve::findOrFail($eleve_id);
+        $eleve->matieres()->updateExistingPivot($matiere_id, ['note' => request('note')]);
+
+        // Rediriger avec un message de succès
+        return redirect('/listeNote')->with('success', 'Note mise à jour avec succès');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function UpdateNote($id)
-    {
-        
-        //$note = Note::find($id);
-        return view('note.modifier', compact('note'));
-    }
-
-
-
-    public function UpdateNoteTraitement(Request $request, $eleveId, $matiereId){
-        $eleve = Eleve::find($eleveId);
-       
-        $eleve->matieres()->updateExistingPivot($matiereId, [
-            'note' => $request->note,
-        ])->wherePivot('id', $request->id);
-    }
-   
-
-   
+  
 }
+
+
