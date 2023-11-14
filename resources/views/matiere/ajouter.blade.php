@@ -5,7 +5,7 @@
   <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     @foreach($errors->all() as $error)
         {{$error}}
-        <strong>Oh snap!</strong> 
+        <strong>OOPS!</strong> 
     @endforeach
 </div>
 @endif
