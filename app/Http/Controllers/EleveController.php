@@ -21,6 +21,7 @@ class EleveController extends Controller
     public function create()
     {
         //
+         return view('eleves.ajouter');
     }
 
     /**
@@ -29,22 +30,40 @@ class EleveController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate(['nom'=>'required|string|max:20'
+    ],['prenom'=>'required|string|max:20'
+    ],['dateNaissance'=>'required'],
+    ['classe'=>'required'],
+    ['sexe'=>'required']
+);
+        $eleves = new Eleve();
+        $eleves->nom=$request->get('nom');
+        $eleves->prenom=$request->get('prenom');
+        $eleves->dateNaissance=$request->get('dateNaissance');
+        $eleves->classe=$request->get('classe');
+        $eleves->sexe=$request->get('sexe');
+        $eleves->save();
+            // return 'bonjour';
+            return back();
+    
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Eleve $eleve)
+    public function show($id)
     {
         //
+    
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Eleve $eleve)
+    public function edit(string $id)
     {
         //
+        
     }
 
     /**
