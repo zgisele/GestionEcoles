@@ -20,7 +20,7 @@
                     <tr>
                         <td>{{$m->nomMatiere}}</td>
                         <td>{{$m->coefficient}}</td>
-                        <td class="d-flex justify-content-center items-center">
+                        <td class=" d-flex justify-content-center items-center ">
                             <button type="submit" value="/modifiereleve/{{$m->id}}" class="btn btn-warning m-1 px-3 pr-3">
                                 <i class="fas fa-exclamation-triangle"></i> Modifier
                             </button>
