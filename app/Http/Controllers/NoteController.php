@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Eleve;
-use App\Models\Matiere;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Redis;
 
 class NoteController extends Controller
 {
@@ -75,12 +75,8 @@ class NoteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($idNote, $idEleve)
+    public function destroy(string $id)
     {
-
-        $eleve = Eleve::find($idEleve);
-        $eleve->matieres()->detach($idNote);
-
-        return back()->with('status', 'note supprimee avec succes');
+        //
     }
 }

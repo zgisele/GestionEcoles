@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Eleve;
 use App\Http\Controllers\NoteController;
 use App\Models\Matiere;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +21,11 @@ use App\Http\Controllers\EleveController;
 //     return view('welcome');
 // });
 
+// Route::get('/', function () {
+//     return view('eleves.liste');
+// });
+Route::get('/eleves', [EleveController::class,'index']);
+Route::get('/eleves/{id}', [EleveController::class,'destroy']);
 // Route::get('/matiere', function () {
 //     return view('.ajouter');
 // });
