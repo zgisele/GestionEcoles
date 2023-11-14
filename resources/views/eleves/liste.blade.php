@@ -52,7 +52,15 @@
             {!! $eleves->links() !!}
 
         </div>
-    </div>
-</div>
 
+        </td>
+
+        </tr>
+        @endforeach
+
+        </tbody>
+        </table>
+    </div>
+    </div>
+    </div>
 @endsection
