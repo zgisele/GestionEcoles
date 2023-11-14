@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Matiere;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class MatiereController extends Controller
 {
@@ -12,7 +13,8 @@ class MatiereController extends Controller
      */
     public function index()
     {
-        //
+        $matiere = Matiere::all();
+        return view("matiere.liste", compact("matiere"));
     }
 
     /**
@@ -20,7 +22,7 @@ class MatiereController extends Controller
      */
     public function create()
     {
-        //
+        return view("matiere.ajouter");
     }
 
     /**
@@ -28,7 +30,17 @@ class MatiereController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "nomMatiere"=> "required|String|min:5,max:40",
+            "coefficient"=> "required|integer|"
+            ]);
+        $matiere = new Matiere();
+        $matiere->nomMatiere = $request->nomMatiere;
+        $matiere->coefficient = $request->coefficient;
+        if($matiere->save()){
+            echo"Ajout reussi";
+            return Redirect::to('/matieres');
+        }
     }
 
     /**

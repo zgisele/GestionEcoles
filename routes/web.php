@@ -1,6 +1,10 @@
 <?php
 
+use App\Models\Eleve;
+use App\Models\Matiere;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EleveController;
+use App\Http\Controllers\MatiereController;
 use App\Http\Controllers\EleveController;
 use App\Http\Controllers\MatiereController;
 
@@ -33,3 +37,8 @@ Route::post('/eleves/ajouterEleve',[EleveController::class,'store']);
 Route::get('/matiere/{id}/modifier', [MatiereController::class, 'edit'])->name('matiere.modifier');
 Route::put('/matiere/{id}', [MatiereController::class, 'update'])->name('matiere.update');
 
+
+Route::get('/eleves',  [EleveController::class,'index']);
+Route::get('/matieres',  [MatiereController::class,'index']);
+Route::get('/matieres/ajout', [MatiereController::class,'create']);
+Route::post('/matieres/ajoute', [MatiereController::class, 'store']);
