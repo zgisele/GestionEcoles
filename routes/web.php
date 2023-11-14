@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\EleveController;
+use App\Models\Matiere;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EleveController;
+use App\Http\Controllers\MatiereController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +24,6 @@ use Illuminate\Support\Facades\Route;
 //     return view('eleves.liste');
 // });
 Route::get('/eleves', [EleveController::class,'index']);
-Route::get('/eleves/{id}', [EleveController::class,'destroy']);
+Route::get('/eleves/{id}', [EleveController::class,'destroy']);Route::get('/matieres',  [MatiereController::class,'index']);
+Route::get('/matieres/ajout', [MatiereController::class,'create']);
+Route::post('/matieres/ajoute', [MatiereController::class, 'store']);

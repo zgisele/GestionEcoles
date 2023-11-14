@@ -14,7 +14,8 @@ class EleveController extends Controller
      */
     public function index()
     {
-        $eleves = Eleve::orderBy('id','desc')->get();
+        //$eleves = Eleve::orderBy('id','desc')->get();
+        $eleves = Eleve::orderBy("id","desc")->cursorPaginate(2);
         return view('eleves.liste', compact('eleves'));
     }
 
