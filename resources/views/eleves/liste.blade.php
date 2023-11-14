@@ -20,7 +20,7 @@
                 <tbody>
                 @if(count($eleves) > 0)
                     @php $i = 0; @endphp
-                  @foreach($eleves as $eleve)  
+                @foreach($eleves as $eleve)  
                     <tr>
                         <td>{{$eleve->nom}}</td>
                         <td>{{$eleve->prenom}}</td>
