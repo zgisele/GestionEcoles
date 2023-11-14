@@ -48,11 +48,12 @@ class NoteController extends Controller
      */
     public function show(string $id)
     {
-        $matieres = Matiere::all();
+        $matiere = Matiere::all();
         $eleve = Eleve::find($id);
         $matiereEleves = $eleve->matieres()->get();
-        // return response()->json([$matiereEleves]);
-        return view("eleves.note", ["matieres" => $matieres, "eleve" => $eleve, "matiereEleves" => $matiereEleves]);
+
+
+        return view("eleves.note", ["matieres" => $matiere, "eleve" => $eleve, "matiereEleves" => $matiereEleves]);
     }
 
     /**
@@ -76,8 +77,10 @@ class NoteController extends Controller
      */
     public function destroy($idNote, $idEleve)
     {
+
         $eleve = Eleve::find($idEleve);
-        $eleve->matieres()->wherePivot('id', $idNote)->detach();
+        $eleve->matieres()->detach($idNote);
+
         return back()->with('status', 'note supprimee avec succes');
     }
 }

@@ -43,7 +43,10 @@
                         <td>{{$matiereEleve->nomMatiere}}</td>
                         <td>{{$matiereEleve->pivot->note}}</td>
                         <td>{{$matiereEleve->coefficient}}</td>
-                        <td>
+                        <td class="d-flex justify-content-center align-items-center">
+                            <button type="submit" class="btn btn-warning m-1">
+                                <i class="fas fa-warning"></i> Modifier
+                            </button>
                             <form action="{{'/note/supprimer/'.$matiereEleve->id .'/'. $eleve->id}}" method="post">
                                 @method('delete')
                                 @csrf
