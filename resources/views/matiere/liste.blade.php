@@ -1,5 +1,6 @@
 @extends('layout.master')
 @section('contenue')
+
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
@@ -7,7 +8,7 @@
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
+                <!-- <thead>
                     <tr>
                         <th>Name</th>
                         <th>Position</th>
@@ -26,18 +27,17 @@
                         <th>Start date</th>
                         <th>Salary</th>
                     </tr>
-                </tfoot>
+                </tfoot> -->
                 <tbody>
-                    
+                    @foreach($matiere as $matiere){
                     <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
+                        <td>{{$matiere->id}}</td>
+                        <td>{{$matiere->nomMatiere}}</td>
+                        <td>{{$matiere->coefficient}}</td>
                     </tr>
-
+                    <a href="/matiere/modifier."{{$matiere->id}}> Modifier</a>
+                    }
+                    @endforeach
                 </tbody>
             </table>
         </div>
