@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Eleve;
+use App\Models\Matiere;
 use Illuminate\Http\Request;
 
 class NoteController extends Controller
@@ -25,9 +27,20 @@ class NoteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $request->validate(
+            [
+                "note" => "required",
+                "matiere_id" => "required",
+            ]
+        );
+        $eleve = Eleve::find($id);
+        $matiere = Matiere::find($request->matiere_id);
+
+
+        $eleve->matieres()->attach($matiere, ['note' => $request->note]);
+        return back()->with('status', 'note ajoutee aavec success');
     }
 
     /**
@@ -35,7 +48,12 @@ class NoteController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $matiere = Matiere::all();
+        $eleve = Eleve::find($id);
+        $matiereEleves = $eleve->matieres()->get();
+
+
+        return view("eleves.note", ["matieres" => $matiere, "eleve" => $eleve, "matiereEleves" => $matiereEleves]);
     }
 
     /**
@@ -57,8 +75,12 @@ class NoteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($idNote, $idEleve)
     {
-        //
+
+        $eleve = Eleve::find($idEleve);
+        $eleve->matieres()->detach($idNote);
+
+        return back()->with('status', 'note supprimee avec succes');
     }
 }

@@ -294,7 +294,15 @@
 
                 <!-- on ajoute notre contenue pour chaque -->
                 <div class="container-fluid">
+                    @if (Session::has('status'))
+                    <div class="alert alert-dismissible alert-success m-4">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        <strong>Well done!</strong> {{ Session::get('status')}}.
+                    </div>
+                    @endif
+
                     @yield('contenue')
+
                 </div>
                 <!-- /.container-fluid -->
 
