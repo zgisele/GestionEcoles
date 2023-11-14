@@ -1,20 +1,23 @@
 @extends('layout.master')
 @section('contenue')
-    
+
     <div class="container">
         <div class="card">
+            <div class="col-md-6 offset-3 mt-5">{{$matiere->nom}}
+                <h5 class="card-header text-center bg-primary text-white">Modifier la note de {{ $eleve->nom }} pour {{ $matiere->nom }}</h5>
             <div class="col-md-6 offset-3 mt-5">
                 <h5 class="card-header text-center bg-primary text-white">Modifier la note de {{ $eleve->nom }} pour {{ $matiere->nom }}</h5>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('updateNote', ['eleve_id' => $eleve->id, 'matiere_id' => $matiere->id]) }}">
-                        @csrf
-                        @method('PATCH')
-                
+                    <form method="post" action="/note/{{ $eleve->id}}/{{$matiere->id}}">
+                        @csrf.
+                        @method('patch')
+
                         <!-- Champs pour la modification de la note -->
                         <label for="note">Note :</label>
-                        <input type="text" name="note" value="{{ $note->note }}" required>
-                
+                        <input type="text" name="note" value="{{ $note->pivot->note }}" required>
+
                         <!-- Bouton de soumission du formulaire -->
+
                         <button type="submit">Modifier la note</button>
                     </form>
                 </div>

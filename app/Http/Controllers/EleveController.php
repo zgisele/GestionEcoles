@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Eleve;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class EleveController extends Controller
 {
@@ -12,7 +14,8 @@ class EleveController extends Controller
      */
     public function index()
     {
-        $eleves = Eleve::orderBy('id','desc')->get();
+        //$eleves = Eleve::orderBy('id','desc')->get();
+        $eleves = Eleve::orderBy("id","desc")->cursorPaginate(2);
         return view('eleves.liste', compact('eleves'));
     }
 
@@ -22,6 +25,7 @@ class EleveController extends Controller
     public function create()
     {
         //
+         return view('eleves.ajouter');
     }
 
     /**
@@ -30,22 +34,40 @@ class EleveController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate(['nom'=>'required|string|max:20'
+    ],['prenom'=>'required|string|max:20'
+    ],['dateNaissance'=>'required'],
+    ['classe'=>'required'],
+    ['sexe'=>'required']
+);
+        $eleves = new Eleve();
+        $eleves->nom=$request->get('nom');
+        $eleves->prenom=$request->get('prenom');
+        $eleves->dateNaissance=$request->get('dateNaissance');
+        $eleves->classe=$request->get('classe');
+        $eleves->sexe=$request->get('sexe');
+        $eleves->save();
+            // return 'bonjour';
+            return back();
+    
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Eleve $eleve)
+    public function show($id)
     {
         //
+    
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Eleve $eleve)
+    public function edit(string $id)
     {
         //
+        
     }
 
     /**
@@ -82,8 +104,15 @@ class EleveController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Eleve $eleve)
+    public function destroy($id)
     {
-        //
+        $eleve = Eleve::find($id);
+        $eleve->destroy($id);
+        // dd($eleves);
+        if ($eleve->save()) 
+        {
+            return Redirect::to('eleves');
+        }
+        
     }
 }
