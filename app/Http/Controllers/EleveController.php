@@ -60,7 +60,7 @@ class EleveController extends Controller
 
     public function UpdateEleveTraitement(Request $request)
     {
-        $articlereq = $request->validate([
+        $eleve = $request->validate([
             'nom' => 'required',
             'prenom' => 'required',
             'dateNaissance' => 'required',
