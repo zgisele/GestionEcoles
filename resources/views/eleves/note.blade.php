@@ -2,16 +2,17 @@
 @section('contenue')
 
 <div class="card shadow mb-4 p-5">
-    <form class="user">
+    <form method="post" action="{{'/note/ajouter/'. $eleve->id}}" class="user">
+        @method('post')
+        @csrf
         <div class="form-group row">
             <div class="col-sm-2 mb-3 mb-sm-0">
-                <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
+                <input type="text" name="note" class="form-control form-control-user" id="exampleFirstName" placeholder="Note">
             </div>
             <div class="col-sm-5 ">
-                <select class="form-select form-control form-control-user text-primary" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
+                <select name="matiere_id" class="form-select form-control form-control-user text-primary">
                     @foreach ($matieres as $matiere)
-                    <option value="{{$matiere->id}}">{{$matiere->id}}</option>
+                    <option value="{{$matiere->id}}">{{$matiere->nomMatiere}}</option>
                     @endforeach
                 </select>
             </div>
@@ -30,35 +31,29 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Matieres</th>
+                        <th>Notes</th>
+                        <th>coefficients</th>
+                        <th>actions</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                    </tr>
-                </tfoot>
                 <tbody>
-
+                    @foreach ($matiereEleves as $matiereEleve)
                     <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
+                        <td>{{$matiereEleve->nomMatiere}}</td>
+                        <td>{{$matiereEleve->pivot->note}}</td>
+                        <td>{{$matiereEleve->coefficient}}</td>
+                        <td>
+                            <form action="{{'/note/supprimer/'.$matiereEleve->id .'/'. $eleve->id}}" method="post">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i> Supprimer
+                                </button>
+                            </form>
+                        </td>
                     </tr>
-
+                    @endforeach
                 </tbody>
             </table>
         </div>
