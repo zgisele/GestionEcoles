@@ -3,10 +3,8 @@
 use App\Models\Eleve;
 use App\Models\Matiere;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EleveController;
 use App\Http\Controllers\MatiereController;
 use App\Http\Controllers\EleveController;
-use App\Http\Controllers\MatiereController;
 
 /*
 |--------------------------------------------------------------------------
