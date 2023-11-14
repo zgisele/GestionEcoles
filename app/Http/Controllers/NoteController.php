@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Eleve;
+use App\Models\Matiere;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Redis;
@@ -67,16 +69,23 @@ class NoteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function UpdateNote($id)
     {
-        //
+        
+        //$note = Note::find($id);
+        return view('note.modifier', compact('note'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+
+
+    public function UpdateNoteTraitement(Request $request, $eleveId, $matiereId){
+        $eleve = Eleve::find($eleveId);
+       
+        $eleve->matieres()->updateExistingPivot($matiereId, [
+            'note' => $request->note,
+        ])->wherePivot('id', $request->id);
     }
+   
+
+   
 }

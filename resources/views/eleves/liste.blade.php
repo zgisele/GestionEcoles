@@ -31,7 +31,7 @@
                                     <a href="#" class="btn btn-info btn-circle btn-lg">
                                         <i class="fas fa-info-circle"></i>
                                     </a>
-                                    <a href="/modifierEleve/{{$eleve->id}}" class="btn btn-warning btn-circle btn-lg">
+                                    <a href="/modifiereleve/{{$eleve->id}}" class="btn btn-warning btn-circle btn-lg">
                                         <i class="fas fa-exclamation-triangle"></i>
                                     </a>
                                     <a href="/eleves/{{ $eleve->id }}" class="btn btn-danger btn-circle btn-lg">
