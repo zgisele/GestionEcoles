@@ -70,8 +70,13 @@ class MatiereController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Matiere $matiere)
+    public function destroy($id)
     {
-        //
+        $matiere = Matiere::find($id);
+        $matiere->destroy('id');
+        if($matiere->save())
+        {
+            return Redirect::to('matieres.liste');
+        }
     }
 }

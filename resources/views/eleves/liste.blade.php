@@ -20,7 +20,7 @@
                 <tbody>
                 @if(count($eleves) > 0)
                     @php $i = 0; @endphp
-                  @foreach($eleves as $eleve)  
+                @foreach($eleves as $eleve)  
                     <tr>
                         <td>{{$eleve->nom}}</td>
                         <td>{{$eleve->prenom}}</td>
@@ -36,9 +36,11 @@
                                     <button type="submit" class="btn btn-warning m-1 px-3 pr-3">
                                         <i class="fas fa-exclamation-triangle"></i> Modifier
                                     </button>
-                                    <button type="submit" class="btn btn-danger m-1 px-3 pr-3">
-                                        <i class="fas fa-trash"></i> Supprimer
-                                    </button>
+                                    <a href="/eleves/{{$eleve->id}}">
+                                        <button type="submit" class="btn btn-danger m-1 px-3 pr-3">
+                                            <i class="fas fa-trash"></i> Supprimer
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
 
@@ -56,7 +58,7 @@
         </td>
 
         </tr>
-        @endforeach
+        {{-- @endforeach --}}
 
         </tbody>
         </table>
