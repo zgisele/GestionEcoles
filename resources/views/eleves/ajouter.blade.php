@@ -21,18 +21,13 @@
                         <input type="Date" class="form-control" id="dateNaissance"  name="dateNaissance"  placeholder="dateNaissance">
                     </div>
                     <div class="form-group">
-                            <select name="classe" id="sexe" style="width:100%;">
+                            <select name="classe" id="classe" style="width:100%;">
                                 <option value="6e">6e</option>
                                 <option value="5e">5e</option>
                                 <option value="4e">4e</option>
                                 <option value="3e">3e</option>
                                 <option value="2nd">2nd</option>
                                 <option value="tle">TLe</option>
-                                <option value="licence1">Licence1</option>
-                                <option value="licence2">Licence2</option>
-                                <option value="licence3">Licence3</option>
-                                <option value="master1">Master1</option>
-                                <option value="master2">Master2</option>
                             </select>
                         <!-- <label for="classe">Classe</label>
                         <input type="text" class="form-control" id="classe"  name="classe" placeholder="classe"> -->

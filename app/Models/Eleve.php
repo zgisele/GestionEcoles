@@ -18,6 +18,6 @@ class Eleve extends Model
     ];
     public function matieres()
     {
-        return $this->belongsToMany(Matiere::class)->withPivot('note');
+        return $this->belongsToMany(Matiere::class)->withPivot('note', 'id');
     }
 }
