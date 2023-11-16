@@ -7,7 +7,7 @@
                 <h5 class="card-header text-center bg-primary text-white">Modifier la note de {{ $eleve->nom }} pour {{ $matiere->nom }}</h5>
                 <div class="card-body">
                     <form method="post" action="/note/{{ $eleve->id}}/{{$matiere->id}}">
-                        @csrf.
+                        @csrf
                         @method('patch')
 
                         <!-- Champs pour la modification de la note -->
