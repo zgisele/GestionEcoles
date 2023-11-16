@@ -64,11 +64,10 @@ class NoteController extends Controller
         // dd($eleve->matieres()->detach($idtablePivot));
 
 
-        $eleve = Eleve::find($idEleve);
+        $eleve = Eleve::findOrFail($idEleve);
+        $piv = $eleve->matieres()->wherePivot('id', $idNote);
+        $piv->detach();
 
-        $matiere = $eleve->matieres()->detach($idNote);
-
-        $matiere->save();
         return back()->with('status', 'note supprimee avec succes');
     }
 
@@ -78,31 +77,34 @@ class NoteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($eleve_id, $matiere_id)
+    public function edit($idNote, $idEleve)
     {
-        // Récupérer l'élève et la matière
-        $eleve = Eleve::findOrFail($eleve_id);
-        $matiere = Matiere::findOrFail($matiere_id);
+        $eleve = Eleve::findOrFail($idEleve);
+        $piv = $eleve->matieres()->wherePivot('id', $idNote)->first();
 
-        // Récupérer la note de l'élève pour la matière spécifiée
-        $note = $eleve->matieres()->where('matiere_id', $matiere_id)->first();
-
-        // Charger la vue pour la modification avec les données de la note
-        return view('notes.modifier', compact('eleve', 'matiere', 'note'));
+        return view('notes.modifier', ['piv' => $piv]);
     }
 
-    public function update($eleve_id, $matiere_id)
+    public function update(Request $request, $idNote, $idEleve)
     {
         // Valider les données du formulaire
-        request()->validate([
-            'note' => 'required|numeric',
-        ]);
+        $request->validate(
+            [
+                'note' => 'required',
+            ]
+        );
 
-        // Mettre à jour la note
-        $eleve = Eleve::findOrFail($eleve_id);
-        $eleve->matieres()->updateExistingPivot($matiere_id, ['note' => request('note')]);
+        $eleve = Eleve::findOrFail($idEleve);
+        $matiere = Matiere::get();
 
-        // Rediriger avec un message de succès
-        return redirect('/eleves/notes/'.$eleve_id)->with('success', 'Note mise à jour avec succès');
+        $eleve->matieres()
+            ->wherePivot(
+                'id',
+                $idNote
+            )->updateExistingPivot(
+                $matiere,
+                ['note' => $request->input('note')]
+            );
+        return Redirect::to('/eleves/notes/' . $idEleve)->with('success', 'Note mise à jour avec succès');
     }
 }
