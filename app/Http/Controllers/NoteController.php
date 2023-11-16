@@ -30,48 +30,9 @@ class NoteController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request, $id)
-   // app/Http/Controllers/NoteController.php
-
+{}
 
     
-
-    public function edit($eleve_id, $matiere_id)
-    {
-        $request->validate(
-            [
-                "note" => "required",
-                "matiere_id" => "required",
-            ]
-        );
-        $eleve = Eleve::find($id);
-        $matiere = Matiere::find($request->matiere_id);
-
-
-        $eleve->matieres()->attach($matiere, ['note' => $request->note]);
-        return back()->with('status', 'note ajoutee aavec success');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        $matiere = Matiere::all();
-        $eleve = Eleve::find($id);
-        $matiereEleves = $eleve->matieres()->get();
-
-
-        return view("eleves.note", ["matieres" => $matiere, "eleve" => $eleve, "matiereEleves" => $matiereEleves]);
-    }
-    public function destroy($idNote, $idEleve)
-    {
-
-        $eleve = Eleve::find($idEleve);
-        $eleve->matieres()->detach($idNote);
-
-        return back()->with('status', 'note supprimee avec succes');
-    }
-
 
 
 
@@ -80,15 +41,6 @@ class NoteController extends Controller
      */
     public function edit($eleve_id, $matiere_id)
     {
-        // Récupérer l'élève et la matière
-        $eleve = Eleve::findOrFail($eleve_id);
-        $matiere = Matiere::findOrFail($matiere_id);
-
-        // Récupérer la note de l'élève pour la matière spécifiée
-        $note = $eleve->matieres()->where('matiere_id', $matiere_id)->first();
-
-        // Charger la vue pour la modification avec les données de la note
-        return view('notes.modifier', compact('eleve', 'matiere', 'note'));
         // Récupérer l'élève et la matière
         $eleve = Eleve::findOrFail($eleve_id);
         $matiere = Matiere::findOrFail($matiere_id);

@@ -33,4 +33,8 @@ Route::get('/matieres/ajout', [MatiereController::class,'create']);
 Route::post('/matieres/ajoute', [MatiereController::class, 'store']);
 
 
+//Route::get('/eleves/notes/{id}', [MatiereController::class, 'store']);
+
+
+
 
